@@ -1,0 +1,2 @@
+- adafruit_irremote(MIT) https://github.com/adafruit/Adafruit_CircuitPython_IRRemote
+- adafruit_hid(MIT) https://github.com/adafruit/Adafruit_CircuitPython_HID

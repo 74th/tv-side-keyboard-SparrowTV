@@ -1168,7 +1168,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 92.71 195.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0af00155-7f30-49af-a340-d0ebddb30dca)
-    (property "Reference" "SW7" (at 92.71 187.96 0)
+    (property "Reference" "SW3" (at 92.71 187.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 92.71 190.5 0)
@@ -1185,7 +1185,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW7") (unit 1)
+          (reference "SW3") (unit 1)
         )
       )
     )
@@ -1219,7 +1219,7 @@
   (symbol (lib_id "Device:R") (at 168.91 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0f5c0d06-7b7b-49c3-96c2-53ff96bdfa15)
-    (property "Reference" "R3" (at 168.91 149.86 90)
+    (property "Reference" "R1" (at 168.91 149.86 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "27" (at 168.91 152.4 90)
@@ -1236,7 +1236,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "R3") (unit 1)
+          (reference "R1") (unit 1)
         )
       )
     )
@@ -1295,7 +1295,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 262.89 186.69 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1dff02c2-d202-41d9-8ff1-68ae56a5bc30)
-    (property "Reference" "D20" (at 275.59 182.8039 0)
+    (property "Reference" "D17" (at 275.59 182.8039 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 275.59 185.3439 0)
@@ -1314,7 +1314,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D20") (unit 1)
+          (reference "D17") (unit 1)
         )
       )
     )
@@ -1400,7 +1400,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 208.28 186.69 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1fc00069-4ce9-43fe-85d3-08dc9deb276d)
-    (property "Reference" "D18" (at 220.98 182.8039 0)
+    (property "Reference" "D19" (at 220.98 182.8039 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 220.98 185.3439 0)
@@ -1419,7 +1419,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D18") (unit 1)
+          (reference "D19") (unit 1)
         )
       )
     )
@@ -1428,7 +1428,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 236.22 186.69 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1fcc5242-2689-4ffd-8c6e-eff9666dcf23)
-    (property "Reference" "D19" (at 248.92 182.8039 0)
+    (property "Reference" "D18" (at 248.92 182.8039 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 248.92 185.3439 0)
@@ -1447,7 +1447,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D19") (unit 1)
+          (reference "D18") (unit 1)
         )
       )
     )
@@ -1531,7 +1531,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 92.71 220.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 309a38dc-e326-4319-8117-89c3eb2ec77e)
-    (property "Reference" "SW11" (at 92.71 213.36 0)
+    (property "Reference" "SW8" (at 92.71 213.36 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 92.71 215.9 0)
@@ -1548,7 +1548,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW11") (unit 1)
+          (reference "SW8") (unit 1)
         )
       )
     )
@@ -1607,7 +1607,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 71.12 220.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3da1a308-439b-443b-8062-61c894750f28)
-    (property "Reference" "SW10" (at 71.12 213.36 0)
+    (property "Reference" "SW4" (at 71.12 213.36 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 71.12 215.9 0)
@@ -1624,7 +1624,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW10") (unit 1)
+          (reference "SW4") (unit 1)
         )
       )
     )
@@ -1633,7 +1633,7 @@
   (symbol (lib_id "$74th:M5_IR_Unit") (at 185.42 74.93 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3e8c47c5-39f2-471c-a700-453e16100f53)
-    (property "Reference" "U2" (at 176.53 76.2 0)
+    (property "Reference" "CH2" (at 176.53 76.2 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "M5 IR Unit" (at 176.53 78.74 0)
@@ -1652,7 +1652,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "U2") (unit 1)
+          (reference "CH2") (unit 1)
         )
       )
     )
@@ -1686,7 +1686,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 115.57 195.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 414abc16-20a9-4013-a51c-7fb5624b40b0)
-    (property "Reference" "SW8" (at 115.57 187.96 0)
+    (property "Reference" "SW7" (at 115.57 187.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 115.57 190.5 0)
@@ -1703,7 +1703,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW8") (unit 1)
+          (reference "SW7") (unit 1)
         )
       )
     )
@@ -1712,7 +1712,7 @@
   (symbol (lib_id "Device:D") (at 53.34 175.26 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4217b77c-8880-4e18-b638-0414bc6a47cc)
-    (property "Reference" "D1" (at 55.88 173.99 90)
+    (property "Reference" "D2" (at 55.88 173.99 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 55.88 176.53 90)
@@ -1735,7 +1735,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D1") (unit 1)
+          (reference "D2") (unit 1)
         )
       )
     )
@@ -1744,7 +1744,7 @@
   (symbol (lib_id "Device:D") (at 120.65 199.39 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4427ec13-3dcc-4df0-9fa1-2a1439a9ee58)
-    (property "Reference" "D8" (at 123.19 198.12 90)
+    (property "Reference" "D5" (at 123.19 198.12 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 123.19 200.66 90)
@@ -1767,7 +1767,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D8") (unit 1)
+          (reference "D5") (unit 1)
         )
       )
     )
@@ -1776,7 +1776,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 180.34 156.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 44d887c8-dc67-417b-a91f-8f5cff430f35)
-    (property "Reference" "D13" (at 193.04 152.3239 0)
+    (property "Reference" "D16" (at 193.04 152.3239 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 193.04 154.8639 0)
@@ -1795,7 +1795,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D13") (unit 1)
+          (reference "D16") (unit 1)
         )
       )
     )
@@ -1804,7 +1804,7 @@
   (symbol (lib_id "Device:D") (at 97.79 224.79 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47e867cc-9851-4fe7-b795-ee27e7879451)
-    (property "Reference" "D11" (at 100.33 223.52 90)
+    (property "Reference" "D10" (at 100.33 223.52 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 100.33 226.06 90)
@@ -1827,7 +1827,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D11") (unit 1)
+          (reference "D10") (unit 1)
         )
       )
     )
@@ -1861,7 +1861,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 236.22 156.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4dc4652c-80d3-496b-899e-b20ce9e53f1e)
-    (property "Reference" "D15" (at 248.92 152.3239 0)
+    (property "Reference" "D14" (at 248.92 152.3239 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 248.92 154.8639 0)
@@ -1880,7 +1880,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D15") (unit 1)
+          (reference "D14") (unit 1)
         )
       )
     )
@@ -1919,7 +1919,7 @@
   (symbol (lib_id "Device:R") (at 49.53 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 504c2bfa-cb35-4a8f-bf07-a9f1da07e042)
-    (property "Reference" "R2" (at 52.07 77.47 0)
+    (property "Reference" "R3" (at 52.07 77.47 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 52.07 80.01 0)
@@ -1936,7 +1936,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "R2") (unit 1)
+          (reference "R3") (unit 1)
         )
       )
     )
@@ -2020,7 +2020,7 @@
   (symbol (lib_id "Device:D") (at 97.79 199.39 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5f884dd9-5ca7-47b7-8a67-83d2359696a3)
-    (property "Reference" "D7" (at 100.33 198.12 90)
+    (property "Reference" "D8" (at 100.33 198.12 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 100.33 200.66 90)
@@ -2043,7 +2043,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D7") (unit 1)
+          (reference "D8") (unit 1)
         )
       )
     )
@@ -2052,7 +2052,7 @@
   (symbol (lib_id "Device:D") (at 76.2 224.79 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 84edc5fa-b15d-48e1-b9df-b184b2475aa7)
-    (property "Reference" "D10" (at 78.74 223.52 90)
+    (property "Reference" "D11" (at 78.74 223.52 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 78.74 226.06 90)
@@ -2075,7 +2075,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D10") (unit 1)
+          (reference "D11") (unit 1)
         )
       )
     )
@@ -2159,7 +2159,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 180.34 186.69 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8954f74c-edea-45d5-9df6-beae07df8f11)
-    (property "Reference" "D17" (at 193.04 182.8039 0)
+    (property "Reference" "D20" (at 193.04 182.8039 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 193.04 185.3439 0)
@@ -2178,7 +2178,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D17") (unit 1)
+          (reference "D20") (unit 1)
         )
       )
     )
@@ -2341,7 +2341,7 @@
   (symbol (lib_id "Device:D") (at 120.65 175.26 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9e37417a-ea3a-4b36-b12f-99d52b80c922)
-    (property "Reference" "D4" (at 123.19 173.99 90)
+    (property "Reference" "D1" (at 123.19 173.99 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 123.19 176.53 90)
@@ -2364,7 +2364,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D4") (unit 1)
+          (reference "D1") (unit 1)
         )
       )
     )
@@ -2448,7 +2448,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 208.28 156.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ad264ad5-95c8-4973-8041-3d30b6134f81)
-    (property "Reference" "D14" (at 220.98 152.3239 0)
+    (property "Reference" "D15" (at 220.98 152.3239 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 220.98 154.8639 0)
@@ -2467,7 +2467,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D14") (unit 1)
+          (reference "D15") (unit 1)
         )
       )
     )
@@ -2501,7 +2501,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 48.26 220.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b64adf63-f8f9-4683-9baf-12cfcd56515a)
-    (property "Reference" "SW9" (at 48.26 213.36 0)
+    (property "Reference" "SW11" (at 48.26 213.36 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 48.26 215.9 0)
@@ -2518,7 +2518,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW9") (unit 1)
+          (reference "SW11") (unit 1)
         )
       )
     )
@@ -2527,7 +2527,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 71.12 171.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b66acff3-01ec-4725-9061-08052bdcfed8)
-    (property "Reference" "SW2" (at 71.12 163.83 0)
+    (property "Reference" "SW5" (at 71.12 163.83 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 71.12 166.37 0)
@@ -2544,7 +2544,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW2") (unit 1)
+          (reference "SW5") (unit 1)
         )
       )
     )
@@ -2553,7 +2553,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 262.89 218.44 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b89d299d-33c4-405c-8ef8-ec6872260f53)
-    (property "Reference" "D24" (at 275.59 214.5539 0)
+    (property "Reference" "D22" (at 275.59 214.5539 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 275.59 217.0939 0)
@@ -2572,7 +2572,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D24") (unit 1)
+          (reference "D22") (unit 1)
         )
       )
     )
@@ -2581,7 +2581,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 48.26 195.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b9c132b4-2aaf-4e08-a54f-1bc5fc1ce09e)
-    (property "Reference" "SW5" (at 48.26 187.96 0)
+    (property "Reference" "SW6" (at 48.26 187.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 48.26 190.5 0)
@@ -2598,7 +2598,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW5") (unit 1)
+          (reference "SW6") (unit 1)
         )
       )
     )
@@ -2607,7 +2607,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 92.71 171.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b9d1616a-9abd-40a2-84dc-47ecefb8f81f)
-    (property "Reference" "SW3" (at 92.71 163.83 0)
+    (property "Reference" "SW9" (at 92.71 163.83 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 92.71 166.37 0)
@@ -2624,7 +2624,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW3") (unit 1)
+          (reference "SW9") (unit 1)
         )
       )
     )
@@ -2661,7 +2661,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 208.28 218.44 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid be0ac98b-5e4c-4387-96ab-bb5f6f5df5a8)
-    (property "Reference" "D22" (at 220.98 214.5539 0)
+    (property "Reference" "D24" (at 220.98 214.5539 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 220.98 217.0939 0)
@@ -2680,7 +2680,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D22") (unit 1)
+          (reference "D24") (unit 1)
         )
       )
     )
@@ -2746,7 +2746,7 @@
   (symbol (lib_id "Device:D") (at 76.2 175.26 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c513aa7a-08f2-41cc-930d-1c187cc3c1d5)
-    (property "Reference" "D2" (at 78.74 173.99 90)
+    (property "Reference" "D3" (at 78.74 173.99 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 78.74 176.53 90)
@@ -2769,7 +2769,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D2") (unit 1)
+          (reference "D3") (unit 1)
         )
       )
     )
@@ -2778,7 +2778,7 @@
   (symbol (lib_id "Device:D") (at 53.34 199.39 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c9d3c11f-3643-4824-96ff-ad2bcffd60fc)
-    (property "Reference" "D5" (at 55.88 198.12 90)
+    (property "Reference" "D6" (at 55.88 198.12 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 55.88 200.66 90)
@@ -2801,7 +2801,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D5") (unit 1)
+          (reference "D6") (unit 1)
         )
       )
     )
@@ -3020,7 +3020,7 @@
   (symbol (lib_id "Device:D") (at 97.79 175.26 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e1e64131-26db-4daa-abe4-f04f828bdca3)
-    (property "Reference" "D3" (at 100.33 173.99 90)
+    (property "Reference" "D4" (at 100.33 173.99 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 100.33 176.53 90)
@@ -3043,7 +3043,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D3") (unit 1)
+          (reference "D4") (unit 1)
         )
       )
     )
@@ -3077,7 +3077,7 @@
   (symbol (lib_id "Device:R") (at 39.37 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ecc680c8-2906-4b69-bf37-70b9a52d4e67)
-    (property "Reference" "R1" (at 41.91 77.47 0)
+    (property "Reference" "R2" (at 41.91 77.47 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 41.91 80.01 0)
@@ -3094,7 +3094,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "R1") (unit 1)
+          (reference "R2") (unit 1)
         )
       )
     )
@@ -3103,7 +3103,7 @@
   (symbol (lib_id "Device:D") (at 76.2 199.39 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid edd0be69-002f-45b2-8286-6c6b4a97a017)
-    (property "Reference" "D6" (at 78.74 198.12 90)
+    (property "Reference" "D7" (at 78.74 198.12 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "D" (at 78.74 200.66 90)
@@ -3126,7 +3126,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D6") (unit 1)
+          (reference "D7") (unit 1)
         )
       )
     )
@@ -3135,7 +3135,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 71.12 195.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f0c930a6-d076-4958-a3fe-1f0cc29d6601)
-    (property "Reference" "SW6" (at 71.12 187.96 0)
+    (property "Reference" "SW10" (at 71.12 187.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 71.12 190.5 0)
@@ -3152,7 +3152,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW6") (unit 1)
+          (reference "SW10") (unit 1)
         )
       )
     )
@@ -3161,7 +3161,7 @@
   (symbol (lib_id "$74th:SK6812MINI") (at 262.89 156.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid facf8593-6ead-495c-aede-57ba2e42f4b4)
-    (property "Reference" "D16" (at 275.59 152.3239 0)
+    (property "Reference" "D13" (at 275.59 152.3239 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SK6812MINI" (at 275.59 154.8639 0)
@@ -3180,7 +3180,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "D16") (unit 1)
+          (reference "D13") (unit 1)
         )
       )
     )
@@ -3240,7 +3240,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 115.57 171.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid fd8d81fb-46ee-4e1e-9daf-fc701d6d8d93)
-    (property "Reference" "SW4" (at 115.57 163.83 0)
+    (property "Reference" "SW2" (at 115.57 163.83 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 115.57 166.37 0)
@@ -3257,7 +3257,7 @@
     (instances
       (project "tv-side-keyboard"
         (path "/70d7f4f7-a898-4942-8513-0c51c5fda702"
-          (reference "SW4") (unit 1)
+          (reference "SW2") (unit 1)
         )
       )
     )

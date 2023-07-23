@@ -1,31 +1,17 @@
-import usb_hid
 import time
 import array
-from adafruit_hid.keyboard import Keyboard
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-from adafruit_hid.keycode import Keycode
+import json
+import socketpool
+import wifi
+import usb_hid
 import pulseio
 import adafruit_irremote
 import digitalio
 import board
+from adafruit_httpserver import Server, Request, Response
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keycode import Keycode
 
-
-
-def test_keyboard():
-    kbd = Keyboard(usb_hid.devices)
-    layout = KeyboardLayoutUS(kbd)
-
-    btn = digitalio.DigitalInOut(board.IO0)
-    btn.switch_to_input(pull=digitalio.Pull.UP)
-
-    btn_status = [True for _ in range(1)]
-
-    while True:
-        time.sleep(1)
-        print(btn.value)
-        if btn_status[0] != btn.value and not btn.value:
-            kbd.send(Keycode.A)
-        btn_status[0] = btn.value
 
 def test_ir():
     pulsein = pulseio.PulseIn(board.IO7, maxlen=120, idle_state=True)
@@ -75,7 +61,53 @@ def test_send_ir():
             time.sleep(1)
             led.value = False
 
+def setup_button():
+    global btn
+    btn = digitalio.DigitalInOut(board.IO0)
+    btn.switch_to_input(pull=digitalio.Pull.UP)
 
-# test_keyboard()
-# test_ir()
-test_send_ir()
+def setup_keyboard():
+    global kbd, typed
+    kbd = Keyboard(usb_hid.devices)
+    typed = False
+
+def handle_button_as_keyboard():
+    global typed
+    if typed != btn.value and not btn.value:
+        print("type A")
+        kbd.send(Keycode.A)
+    typed = btn.value
+
+
+def setup_api():
+    global api
+    pool = socketpool.SocketPool(wifi.radio)
+    api = Server(pool, None, debug=True)
+
+    @api.route("/api/hello", methods="GET")
+    def hello(request: Request):
+        res = {"success": True}
+        return Response(request, json.dumps(res))
+
+    api.start(str(wifi.radio.ipv4_address))
+
+def handle_api():
+    global api
+    api.poll()
+
+
+def main():
+    print("\n initializing")
+
+    setup_button()
+    setup_keyboard()
+    setup_api()
+
+    print("start main loop")
+    while True:
+        handle_button_as_keyboard()
+        handle_api()
+        time.sleep(0.01)
+
+if __name__ == "__main__":
+    main()

@@ -1,2 +1,3 @@
 - adafruit_irremote(MIT) https://github.com/adafruit/Adafruit_CircuitPython_IRRemote
+- adafruit_httpserver(MIT) https://github.com/adafruit/Adafruit_CircuitPython_HTTPServer
 - adafruit_hid(MIT) https://github.com/adafruit/Adafruit_CircuitPython_HID

@@ -18,10 +18,12 @@ BUTTON_MATRIX_ROW_PINS = [
 I2C_SDA_PIN = board.IO13
 I2C_SCL_PIN = board.IO15
 
-MATRIX_LED_PIN = board.IO16
+MATRIX_LED_PIN = board.IO46
 STAMP_LED_PIN = board.IO21
 
-MATRIX_MAP = [[1,5,9,2],
+MATRIX_BUTTON_MAP = [[1,5,9,2],
               [6,10,3,7],
               [11,4,8,12]
               ]
+
+MATRIX_LED_NUM = 12

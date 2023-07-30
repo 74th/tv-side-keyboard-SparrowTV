@@ -1,6 +1,6 @@
+import time
 import digitalio
 import settings
-import time
 
 class ButtonAction:
     def __init__(self, sw_no: int, is_push: bool):
@@ -42,7 +42,7 @@ class MatrixButtons:
                 value = row_pin.value
                 if self.state[row][col] != value:
                     self.state[row][col] = value
-                    result.append(ButtonAction(settings.MATRIX_MAP[row][col], value))
+                    result.append(ButtonAction(settings.MATRIX_BUTTON_MAP[row][col], value))
 
         return result
 

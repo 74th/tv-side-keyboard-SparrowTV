@@ -97,8 +97,8 @@ def handle_api():
 
 
 def main():
-    import matrix_buttons
-    matrix_buttons.test()
+    import matrix_leds
+    matrix_leds.test()
     return
     print("\n initializing")
 

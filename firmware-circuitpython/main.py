@@ -97,8 +97,8 @@ def handle_api():
 
 
 def main():
-    import matrix_leds
-    matrix_leds.test()
+    import pointer
+    pointer.test()
     return
     print("\n initializing")
 

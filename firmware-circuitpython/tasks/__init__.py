@@ -1,12 +1,13 @@
 import pathlib
-import getpass
 from invoke import task
+
+MOUNT_PATH = "/media/CIRCUITPY"
 
 @task
 def mount(c):
     uid = c.run("id -u", echo=False).stdout.strip()
     gid = c.run("id -g", echo=False).stdout.strip()
-    p = pathlib.Path("/media/CIRCUITPY")
+    p = pathlib.Path(MOUNT_PATH)
     if not p.exists():
         c.run(f"sudo mkdir {p}")
     if len(list(p.glob("*"))) == 0:
@@ -14,7 +15,8 @@ def mount(c):
 
 @task
 def upload_code(c):
-    c.run("cp main.py /media/CIRCUITPY/code.py")
+    c.run(f"rsync -uv --progress '--exclude=_*.py' *.py ./ {MOUNT_PATH}/")
+    c.run(f"rsync -ruv --progress '--exclude=*.md' lib/ {MOUNT_PATH}/lib/")
     c.run("sync")
 
 @task

@@ -97,8 +97,8 @@ def handle_api():
 
 
 def main():
-    import pointer
-    pointer.test()
+    # import ir
+    # ir.test_send()
     return
     print("\n initializing")
 

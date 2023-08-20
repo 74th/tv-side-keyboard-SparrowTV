@@ -1,6 +1,5 @@
 import time
 import array
-import digitalio
 import pulseio
 import settings
 

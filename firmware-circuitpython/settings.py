@@ -27,5 +27,6 @@ MATRIX_BUTTON_MAP = [[1,5,9,2],
               ]
 
 MATRIX_LED_NUM = 12
+MATRIX_LED_MAP = [[0,1,2,3],[4,5,6,7],[8,9,10,11]]
 
 POINTER_DEVICE_ADDR = 0x0a

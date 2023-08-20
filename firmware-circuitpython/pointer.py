@@ -28,7 +28,6 @@ class Pointer:
             return PointerAction(0, 0)
         try:
             self.i2c.readfrom_into(settings.POINTER_DEVICE_ADDR, buf)
-            print(f"buf {buf[0]} {buf[1]} {buf[2]} {buf[3]} {buf[4]}")
         except Exception as e:
             print(f"i2c read failed: {e}")
         finally:

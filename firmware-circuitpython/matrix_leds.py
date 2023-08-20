@@ -29,6 +29,9 @@ class MatrixLED:
         if do:
             self.write()
 
+    def putxy(self, x: int, y: int, g: int, r: int, b: int, do: bool = True):
+        self.put(settings.MATRIX_LED_MAP[y][x], g, r, b, do)
+
     def put_all(self, g: int, r: int, b: int, do: bool = True):
         for i in range(settings.MATRIX_LED_NUM):
             self.put(i, g, r, b, False)

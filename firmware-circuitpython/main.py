@@ -97,20 +97,8 @@ def handle_api():
 
 
 def main():
-    # import ir
-    # ir.test_send()
-    return
-    print("\n initializing")
-
-    setup_button()
-    setup_keyboard()
-    setup_api()
-
-    print("start main loop")
-    while True:
-        handle_button_as_keyboard()
-        handle_api()
-        time.sleep(0.01)
+    import pc_usb
+    pc_usb.test()
 
 if __name__ == "__main__":
     main()

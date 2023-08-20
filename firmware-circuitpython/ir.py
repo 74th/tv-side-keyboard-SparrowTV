@@ -1,3 +1,4 @@
+from typing import Optional
 import time
 import array
 import pulseio
@@ -9,7 +10,7 @@ class IR:
         pass
 
     def setup(self):
-        self.pulseout = pulseio.PulseOut(settings.IR_OUT_PIN)
+        self.pulseout = pulseio.PulseOut(settings.IR_OUT_PIN)  # type: ignore
 
         self.pulsein = pulseio.PulseIn(settings.IR_IN_PIN, maxlen=120, idle_state=True)
         self.pulsein.pause()
@@ -47,9 +48,6 @@ class IR:
         return pulses
 
 
-ir = None
-
-
 def test_setup():
     global ir
     if ir is None:
@@ -68,6 +66,7 @@ def test_send():
         print("ir send")
         ir.send(pulse)
         time.sleep(3)
+
 
 def test_receive():
     global ir

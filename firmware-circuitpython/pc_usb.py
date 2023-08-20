@@ -10,10 +10,11 @@ class MouseState:
         self.y = y
         self.wheel = wheel
 
-class PCUSB:
+
+class PcUSB:
     def __init__(self):
-        self.keyboard = Keyboard(usb_hid.devices)
-        self.mouse = Mouse(usb_hid.devices)
+        self.keyboard = Keyboard(usb_hid.devices)  # type: ignore
+        self.mouse = Mouse(usb_hid.devices)  # type: ignore
         self._current_mouse_state = MouseState(0, 0, 0)
 
     def setup(self):
@@ -24,8 +25,8 @@ class PCUSB:
             self.keyboard.send(keycode)
             time.sleep(0.001)
 
-    def key_type(self, keycode: int):
-        self.keyboard.send(keycode)
+    def key_type(self, keycode: list[int]):
+        self.keyboard.send(*keycode)
 
     def handle_key_button(self, keycode: int, is_push: bool):
         if is_push:
@@ -53,7 +54,7 @@ def test():
     matrix_buttons = MatrixButtons()
     matrix_led = MatrixLED()
     pointer = Pointer()
-    pc_usb = PCUSB()
+    pc_usb = PcUSB()
 
     matrix_buttons.setup()
     matrix_led.setup()
@@ -62,11 +63,11 @@ def test():
 
     print("pc usb test start")
 
-    matrix_led.put_all(0x30, 0x00, 0x00, False)
-    matrix_led.putxy(0, 2, 0x00, 0x30, 0x00, False)
-    matrix_led.putxy(1, 2, 0x00, 0x30, 0x00, False)
-    matrix_led.putxy(2, 2, 0x00, 0x00, 0x20, False)
-    matrix_led.putxy(3, 2, 0x00, 0x00, 0x20, False)
+    matrix_led.put_all((0x30, 0x00, 0x00), False)
+    matrix_led.putxy(0, 2, (0x00, 0x30, 0x00), False)
+    matrix_led.putxy(1, 2, (0x00, 0x30, 0x00), False)
+    matrix_led.putxy(2, 2, (0x00, 0x00, 0x20), False)
+    matrix_led.putxy(3, 2, (0x00, 0x00, 0x20), False)
     matrix_led.write()
 
     wheel_pressed = False
@@ -76,16 +77,16 @@ def test():
         for action in actions:
             if action.sw_no == 1 and action.is_push:
                 print("push H")
-                pc_usb.key_type(Keycode.H)
+                pc_usb.key_type([Keycode.H])
             if action.sw_no == 2 and action.is_push:
                 print("push J")
-                pc_usb.key_type(Keycode.J)
+                pc_usb.key_type([Keycode.J])
             if action.sw_no == 3 and action.is_push:
                 print("push K")
-                pc_usb.key_type(Keycode.K)
+                pc_usb.key_type([Keycode.K])
             if action.sw_no == 4 and action.is_push:
                 print("push L")
-                pc_usb.key_type(Keycode.L)
+                pc_usb.key_type([Keycode.L])
             if action.sw_no == 9:
                 if action.is_push:
                     print("push mouse left")

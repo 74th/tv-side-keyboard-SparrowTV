@@ -1,7 +1,11 @@
+from typing import TypeAlias
 import time
 from neopixel_write import neopixel_write
 import digitalio
 import settings
+
+
+LEDColor: TypeAlias = "tuple[int, int, int]"  # g, r, b
 
 
 class MatrixLED:
@@ -22,21 +26,22 @@ class MatrixLED:
             self.buf[i] = 0
         self.write()
 
-    def put(self, no: int, g: int, r: int, b: int, do: bool = True):
-        self.buf[no * 3] = g
-        self.buf[no * 3 + 1] = r
-        self.buf[no * 3 + 2] = b
+    def put(self, no: int, c: LEDColor, do: bool = True):
+        self.buf[no * 3] = c[0]
+        self.buf[no * 3 + 1] = c[1]
+        self.buf[no * 3 + 2] = c[2]
         if do:
             self.write()
 
-    def putxy(self, x: int, y: int, g: int, r: int, b: int, do: bool = True):
-        self.put(settings.MATRIX_LED_MAP[y][x], g, r, b, do)
+    def putxy(self, x: int, y: int, c: LEDColor, do: bool = True):
+        self.put(settings.MATRIX_LED_MAP[y][x], c, do)
 
-    def put_all(self, g: int, r: int, b: int, do: bool = True):
+    def put_all(self, c: LEDColor, do: bool = True):
         for i in range(settings.MATRIX_LED_NUM):
-            self.put(i, g, r, b, False)
+            self.put(i, c, False)
         if do:
             self.write()
+
 
 def test():
     matrix_led = MatrixLED()
@@ -44,9 +49,9 @@ def test():
     print("led matrix test start")
     time.sleep(0.1)
     while True:
-        matrix_led.put_all(0x10, 0x10, 0x10)
-        for i in range(-1, settings.MATRIX_LED_NUM+2):
-            if 0 <=i < settings.MATRIX_LED_NUM:
-                matrix_led.put(i, 0xf0, 0, 0, False)
+        matrix_led.put_all((0x10, 0x10, 0x10))
+        for i in range(-1, settings.MATRIX_LED_NUM + 2):
+            if 0 <= i < settings.MATRIX_LED_NUM:
+                matrix_led.put(i, (0xF0, 0x00, 0x00), False)
             matrix_led.write()
             time.sleep(0.2)

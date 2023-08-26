@@ -138,7 +138,7 @@ class Master:
             self.pc_usb.apply_mouse_move(MouseState(0, 0, w))
             return
 
-        self.pc_usb.apply_mouse_move(MouseState(p.x, p.y, 0))
+        self.pc_usb.apply_mouse_move(MouseState(2 * p.x, -2 * p.y, 0))
 
     def _loop(self):
         self._handle_matrix_buttons()

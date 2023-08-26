@@ -1,4 +1,6 @@
 from adafruit_hid.keycode import Keycode
+from led_color import *
+from model import *
 from action_codes import (
     CM_SEND_IR,
     CM_TYPE_KEY,
@@ -9,21 +11,29 @@ from action_codes import (
 
 from . import ir_pulse
 
-KC_TV_POWER = [(CM_SEND_IR, ir_pulse.TV_POWER)]
-KC_CTRL_W = [(CM_TYPE_KEY, Keycode.W, Keycode.CONTROL)]
+KC_TV_POWER: KeyAssign = (CM_SEND_IR, ir_pulse.TV_POWER)
+KC_TV_CHANGE_INPUT: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CHANGE_INPUT)
+KC_TV_CURSOR_LEFT: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_LEFT)
+KC_TV_CURSOR_RIGHT: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_RIGHT)
+KC_TV_CURSOR_UP: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_UP)
+KC_TV_CURSOR_DOWN: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_DOWN)
+KC_TV_CURSOR_OK: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_OK)
+KC_TV_CURSOR_BACK: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_BACK)
 
-LAYER1 = [
-    [KC_TV_POWER, None, None, None],
-    [KC_CTRL_W, None, None, None],
-    [None, None, None, None],
-    [KC_MOUSE_L, KC_MOUSE_R, KC_MOUSE_W, None],
+KC_CTRL_W: KeyAssign = [(CM_TYPE_KEY, [Keycode.W, Keycode.CONTROL])]
+KC_ENTER: KeyAssign = [(CM_TYPE_KEY, Keycode.ENTER)]
+
+LAYER1: Layer = [
+    [KC_TV_POWER, KC_TV_CURSOR_BACK, KC_TV_CURSOR_UP, KC_TV_CURSOR_OK],
+    [KC_TV_CHANGE_INPUT, KC_TV_CURSOR_LEFT, KC_TV_CURSOR_DOWN, KC_TV_CURSOR_RIGHT],
+    [KC_MOUSE_L, KC_MOUSE_R, KC_CTRL_W, KC_ENTER],
 ]
 
-LAYER1_LED = [
-    [],
-    [],
-    [],
+LAYER1_LED: LayerLED = [
+    [L_RED, L_YELLOW, L_WHITE, L_PURPLE],
+    [L_GREEN, L_WHITE, L_WHITE, L_WHITE],
+    [L_CYAN, L_CYAN, L_GREEN, L_GREEN],
 ]
 
-LAYERS = [LAYER1]
-LAYERS_LED = [LAYER1_LED]
+LAYERS: Layers = [LAYER1]
+LAYERS_LED: LayersLED = [LAYER1_LED]

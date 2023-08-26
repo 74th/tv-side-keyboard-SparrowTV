@@ -1,5 +1,7 @@
+from typing import Union
 import usb_hid
 from adafruit_hid.keyboard import Keyboard, Keycode
+from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 from adafruit_hid.mouse import Mouse
 import time
 
@@ -14,19 +16,26 @@ class MouseState:
 class PcUSB:
     def __init__(self):
         self.keyboard = Keyboard(usb_hid.devices)  # type: ignore
+        self.keyboard_layout = KeyboardLayoutUS(self.keyboard)
         self.mouse = Mouse(usb_hid.devices)  # type: ignore
         self._current_mouse_state = MouseState(0, 0, 0)
 
     def setup(self):
         pass
 
-    def key_types(self, keycodes: list[int]):
+    def type_key_sequence(self, keycodes: list[int]):
         for keycode in keycodes:
             self.keyboard.send(keycode)
             time.sleep(0.001)
 
-    def key_type(self, keycode: list[int]):
-        self.keyboard.send(*keycode)
+    def type_key(self, keycode: Union[int, list[int]]):
+        if isinstance(keycode, list):
+            self.keyboard.send(*keycode)
+        else:
+            self.keyboard.send(keycode)
+
+    def type_text(self, text: str):
+        self.keyboard_layout.write(text)
 
     def handle_key_button(self, keycode: int, is_push: bool):
         if is_push:
@@ -77,16 +86,16 @@ def test():
         for action in actions:
             if action.sw_no == 1 and action.is_push:
                 print("push H")
-                pc_usb.key_type([Keycode.H])
+                pc_usb.type_key([Keycode.H])
             if action.sw_no == 2 and action.is_push:
                 print("push J")
-                pc_usb.key_type([Keycode.J])
+                pc_usb.type_key([Keycode.J])
             if action.sw_no == 3 and action.is_push:
                 print("push K")
-                pc_usb.key_type([Keycode.K])
+                pc_usb.type_key([Keycode.K])
             if action.sw_no == 4 and action.is_push:
                 print("push L")
-                pc_usb.key_type([Keycode.L])
+                pc_usb.type_key([Keycode.L])
             if action.sw_no == 9:
                 if action.is_push:
                     print("push mouse left")

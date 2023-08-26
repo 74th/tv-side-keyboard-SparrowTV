@@ -1,11 +1,8 @@
-from typing import TypeAlias
 import time
 from neopixel_write import neopixel_write
 import digitalio
+from model import LEDColor
 import settings
-
-
-LEDColor: TypeAlias = "tuple[int, int, int]"  # g, r, b
 
 
 class MatrixLED:

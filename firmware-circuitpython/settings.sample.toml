@@ -1,0 +1,3 @@
+CIRCUITPY_WIFI_SSID = "ssid"
+CIRCUITPY_WIFI_PASSWORD = "ssid-password"
+CIRCUITPY_WEB_API_PASSWORD = "web-password"

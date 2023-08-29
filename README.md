@@ -10,7 +10,7 @@
 >
 > https://protopedia.net/prototype/4340
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BaXQt75BodM?si=mlu5lfM6oDi4CwIf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![YouTube](http://img.youtube.com/vi/BaXQt75BodM/0.jpg)](https://www.youtube.com/watch?v=BaXQt75BodM)
 
 この作品は M5Stack Japan Creativity Contest 2023 に応募しています。
 

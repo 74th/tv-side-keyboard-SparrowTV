@@ -10,7 +10,9 @@
 >
 > https://protopedia.net/prototype/4340
 
-[![YouTube](http://img.youtube.com/vi/BaXQt75BodM/0.jpg)](https://www.youtube.com/watch?v=BaXQt75BodM)
+> (530) Introduce TV Side Keyboard SparrowTV - YouTube
+>
+> https://www.youtube.com/watch?v=BaXQt75BodM
 
 この作品は M5Stack Japan Creativity Contest 2023 に応募しています。
 

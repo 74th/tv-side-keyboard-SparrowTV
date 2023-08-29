@@ -20,6 +20,9 @@
 
 ### v1.0.0
 
+- semantics: [PDF](pcb-kicad/tv-side-keyboard_v1.0.0_semantics.pdf) [kicanvas](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2F74th%2Ftv-side-keyboard-SparrowTV%2Fblob%2Fv1.0.0%2Fpcb-kicad%2Ftv-side-keyboard.kicad_sch)
+- pcb: [kicanvas](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2F74th%2Ftv-side-keyboard-SparrowTV%2Fblob%2Fv1.0.0%2Fpcb-kicad%2Ftv-side-keyboard.kicad_pcb)
+
 #### BOM
 
 | Reference | Name                               | Quantity |

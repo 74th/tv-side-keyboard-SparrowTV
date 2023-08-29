@@ -1948,7 +1948,7 @@
     (property "Reference" "J1" (at 363.22 53.34 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "ESP-Prog-ProgramCOM-RECV" (at 363.22 55.88 0)
+    (property "Value" "ESPProg-Port" (at 363.22 55.88 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "$74th:BoxPinHeader_2x03_P1.27mm_Vertical" (at 363.22 62.23 0)

@@ -7,3 +7,6 @@
 [submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_HTTPServer"]
 	path = firmware-circuitpython/imports/Adafruit_CircuitPython_HTTPServer
 	url = https://github.com/adafruit/Adafruit_CircuitPython_HTTPServer.git
+[submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_Logging"]
+	path = firmware-circuitpython/imports/Adafruit_CircuitPython_Logging
+	url = https://github.com/adafruit/Adafruit_CircuitPython_Logging.git

@@ -3,7 +3,10 @@ import usb_hid
 from adafruit_hid.keyboard import Keyboard, Keycode
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 from adafruit_hid.mouse import Mouse
+import adafruit_logging as logging
 import time
+
+logger = logging.getLogger()
 
 
 class MouseState:
@@ -70,7 +73,7 @@ def test():
     pointer.setup()
     pc_usb.setup()
 
-    print("pc usb test start")
+    logger.info("pc usb test start")
 
     matrix_led.put_all((0x30, 0x00, 0x00), False)
     matrix_led.putxy(0, 2, (0x00, 0x30, 0x00), False)
@@ -85,28 +88,28 @@ def test():
         actions = matrix_buttons.scan()
         for action in actions:
             if action.sw_no == 1 and action.is_push:
-                print("push H")
+                logger.info("push H")
                 pc_usb.type_key([Keycode.H])
             if action.sw_no == 2 and action.is_push:
-                print("push J")
+                logger.info("push J")
                 pc_usb.type_key([Keycode.J])
             if action.sw_no == 3 and action.is_push:
-                print("push K")
+                logger.info("push K")
                 pc_usb.type_key([Keycode.K])
             if action.sw_no == 4 and action.is_push:
-                print("push L")
+                logger.info("push L")
                 pc_usb.type_key([Keycode.L])
             if action.sw_no == 9:
                 if action.is_push:
-                    print("push mouse left")
+                    logger.info("push mouse left")
                 else:
-                    print("release mouse left")
+                    logger.info("release mouse left")
                 pc_usb.handle_mouse_button(Mouse.LEFT_BUTTON, action.is_push)
             if action.sw_no == 10:
                 if action.is_push:
-                    print("push mouse right")
+                    logger.info("push mouse right")
                 else:
-                    print("release mouse right")
+                    logger.info("release mouse right")
                 pc_usb.handle_mouse_button(Mouse.RIGHT_BUTTON, action.is_push)
             if action.sw_no == 11:
                 wheel_pressed = action.is_push
@@ -114,10 +117,10 @@ def test():
         action = pointer.scan()
         if action.x != 0 or action.y != 0:
             if wheel_pressed:
-                print(f"wheel {-action.y}")
+                logger.info(f"wheel {-action.y}")
                 pc_usb.apply_mouse_move(MouseState(0, 0, -action.y))
             else:
-                print(f"mouse {action.x},{-action.y}")
+                logger.info(f"mouse {action.x},{-action.y}")
                 pc_usb.apply_mouse_move(MouseState(action.x, -action.y, 0))
 
         time.sleep(0.01)

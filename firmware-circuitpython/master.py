@@ -1,6 +1,7 @@
 import time
 from typing import cast, Any, TypeAlias, Union
 from adafruit_hid.mouse import Mouse
+import adafruit_logging as logging
 from ir import IR
 from matrix_buttons import MatrixButtons, ButtonAction
 from matrix_leds import MatrixLED, LEDColor
@@ -9,6 +10,8 @@ from pc_usb import MouseState, PcUSB
 import led_color
 from action_codes import *
 from model import *
+
+logger = logging.getLogger()
 
 POINTER_WORK_DURATION_NS = 100_000
 
@@ -69,46 +72,49 @@ class Master:
             code = action[0]
             args = action[1]
         if code == CM_DELAY:
-            print(f"DELAY duration(ms):{args[0]}")
+            logger.info(f"DELAY duration(ms):{args[0]}")
             time.sleep(args)
         if code == CM_TYPE_KEY:
-            print(f"TYPE_KEY key:{args}")
-            self.pc_usb.type_key(args)
+            logger.info(f"TYPE_KEY key:{args}")
+            try:
+                self.pc_usb.type_key(args)
+            except Exception as e:
+                logger.info(f"TYPE_KEY failed: {e}")
         if code == CM_TYPE_TEXT and btn.is_push:
-            print(f"TYPE_TEXT text:{args}")
+            logger.info(f"TYPE_TEXT text:{args}")
             self.pc_usb.type_text(cast(str, args))
         if code == CM_SEND_IR and btn.is_push:
-            print(f"SEND_IR len:{len(args)}")
+            logger.info(f"SEND_IR len:{len(args)}")
             self.ir.send(args)
         if code == CM_LED_XY:
-            print(
+            logger.info(
                 f"LED_XY x:{args[0]} y:{args[1]} color:({args[2]},{args[3]},{args[4]})"
             )
             x, y, g, r, b = args
             self.matrix_led.putxy(x, y, (g, r, b))
         if code == CM_MOUSE_LEFT:
-            print(f"MOUSE_LEFT push:{btn.is_push}")
+            logger.info(f"MOUSE_LEFT push:{btn.is_push}")
             self.pc_usb.handle_mouse_button(Mouse.LEFT_BUTTON, btn.is_push)
         if code == CM_MOUSE_RIGHT:
-            print(f"MOUSE_RIGHT push:{btn.is_push}")
+            logger.info(f"MOUSE_RIGHT push:{btn.is_push}")
             self.pc_usb.handle_mouse_button(Mouse.RIGHT_BUTTON, btn.is_push)
         if code == CM_MOUSE_WHEEL:
-            print(f"MOUSE_WHEEL push:{btn.is_push}")
+            logger.info(f"MOUSE_WHEEL push:{btn.is_push}")
             self._is_wheel_mode = btn.is_push
 
     def _handle_matrix_buttons(self):
         button_actions = self.matrix_buttons.scan()
         for button_action in button_actions:
             if button_action.sw_no - 1 >= len(self.layer):
-                print(f"unknown button no: {button_action.sw_no}")
+                logger.info(f"unknown button no: {button_action.sw_no}")
                 continue
             action = self.layer[button_action.sw_no - 1]
             if button_action.is_push:
-                print(f"pushed sw:{button_action.sw_no}")
+                logger.info(f"pushed sw:{button_action.sw_no}")
             else:
-                print(f"released sw:{button_action.sw_no}")
+                logger.info(f"released sw:{button_action.sw_no}")
             if action is None:
-                print(f"no action")
+                logger.info(f"no action")
                 continue
             if isinstance(action, list):
                 for a in action:

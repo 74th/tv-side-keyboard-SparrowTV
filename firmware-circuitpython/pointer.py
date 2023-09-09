@@ -1,6 +1,9 @@
 import time
 from busio import I2C
+import adafruit_logging as logging
 import settings
+
+logger = logging.getLogger()
 
 
 class PointerAction:
@@ -24,12 +27,12 @@ class Pointer:
     def scan(self) -> PointerAction:
         buf = bytearray(5)
         if not self.i2c.try_lock():
-            print("i2c lock failed")
+            logger.info("i2c lock failed")
             return PointerAction(0, 0)
         try:
             self.i2c.readfrom_into(settings.POINTER_DEVICE_ADDR, buf)
         except Exception as e:
-            print(f"i2c read failed: {e}")
+            logger.info(f"i2c read failed: {e}")
         finally:
             self.i2c.unlock()
         x = buf[1] - buf[0]
@@ -40,8 +43,8 @@ class Pointer:
 def test():
     pointer = Pointer()
     pointer.setup()
-    print("pointer test start")
+    logger.info("pointer test start")
     while True:
         action = pointer.scan()
-        print(f"x={action.x}, y={action.y}")
+        logger.info(f"x={action.x}, y={action.y}")
         time.sleep(0.5)

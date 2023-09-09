@@ -1,8 +1,11 @@
 import time
 from neopixel_write import neopixel_write
+import adafruit_logging as logging
 import digitalio
 from model import LEDColor
 import settings
+
+logger = logging.getLogger()
 
 
 class MatrixLED:
@@ -43,7 +46,7 @@ class MatrixLED:
 def test():
     matrix_led = MatrixLED()
     matrix_led.setup()
-    print("led matrix test start")
+    logger.info("led matrix test start")
     time.sleep(0.1)
     while True:
         matrix_led.put_all((0x10, 0x10, 0x10))

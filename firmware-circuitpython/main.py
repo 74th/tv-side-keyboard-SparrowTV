@@ -1,12 +1,17 @@
 import master
+import uart_logging_handler
+import adafruit_logging as logging
+
+logger = logging.getLogger()
 
 
 def main():
-    print("start initialize")
+    uart_logging_handler.setup()
+    logger.info("start initialize")
     m = master.Master()
     m.setup()
-    print("done")
-    print("start running")
+    logger.info("done")
+    logger.info("start running")
     m.run()
 
 

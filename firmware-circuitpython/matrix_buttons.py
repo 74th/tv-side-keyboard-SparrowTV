@@ -1,6 +1,10 @@
 import time
 import digitalio
+import adafruit_logging as logging
 import settings
+
+logger = logging.getLogger()
+
 
 class ButtonAction:
     def __init__(self, sw_no: int, is_push: bool):
@@ -30,7 +34,7 @@ class MatrixButtons:
             pin.pull = digitalio.Pull.DOWN
             self.row_pins.append(pin)
 
-    def scan(self)->list[ButtonAction]:
+    def scan(self) -> list[ButtonAction]:
         result: list[ButtonAction] = []
 
         for col, _ in enumerate(self.col_pins):
@@ -42,18 +46,21 @@ class MatrixButtons:
                 value = row_pin.value
                 if self.state[row][col] != value:
                     self.state[row][col] = value
-                    result.append(ButtonAction(settings.MATRIX_BUTTON_MAP[row][col], value))
+                    result.append(
+                        ButtonAction(settings.MATRIX_BUTTON_MAP[row][col], value)
+                    )
 
         return result
+
 
 def test():
     matrix = MatrixButtons()
     matrix.setup()
-    print("button matrix test start")
+    logger.info("button matrix test start")
     while True:
         for action in matrix.scan():
             if action.is_push:
-                print(f"pushed  : sw={action.sw_no}")
+                logger.info(f"pushed  : sw={action.sw_no}")
             else:
-                print(f"released: sw={action.sw_no}")
+                logger.info(f"released: sw={action.sw_no}")
         time.sleep(0.1)

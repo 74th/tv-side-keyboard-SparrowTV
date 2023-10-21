@@ -3,9 +3,8 @@ from typing import cast, Any, TypeAlias, Union
 from adafruit_hid.mouse import Mouse
 import adafruit_logging as logging
 from ir import IR
-from matrix_buttons import MatrixButtons, ButtonAction
 from matrix_leds import MatrixLED, LEDColor
-from pointer import Pointer
+from ui import UI, PointerAction, ButtonAction
 from pc_usb import MouseState, PcUSB
 import led_color
 from action_codes import *
@@ -19,9 +18,8 @@ POINTER_WORK_DURATION_NS = 100_000
 class Master:
     def __init__(self):
         self.ir = IR()
-        self.matrix_buttons = MatrixButtons()
         self.matrix_led = MatrixLED()
-        self.pointer = Pointer()
+        self.ui = UI()
         self.pc_usb = PcUSB()
 
         self._pointer_work_time_ns = 0
@@ -29,9 +27,8 @@ class Master:
 
     def setup(self):
         self.ir.setup()
-        self.matrix_buttons.setup()
         self.matrix_led.setup()
-        self.pointer.setup()
+        self.ui.setup()
         self.pc_usb.setup()
 
         self._load_config()
@@ -102,9 +99,20 @@ class Master:
             logger.info(f"MOUSE_WHEEL push:{btn.is_push}")
             self._is_wheel_mode = btn.is_push
 
-    def _handle_matrix_buttons(self):
-        button_actions = self.matrix_buttons.scan()
-        for button_action in button_actions:
+    def _handle_ui(self):
+        now = time.monotonic_ns()
+
+        if self._pointer_work_time_ns + POINTER_WORK_DURATION_NS > now:
+            return
+
+        self._pointer_work_time_ns = now
+
+        action = self.ui.scan()
+        self._handle_matrix_buttons(action.buttons)
+        self._handle_pointer(action.pointer)
+
+    def _handle_matrix_buttons(self, actions: list[ButtonAction]):
+        for button_action in actions:
             if button_action.sw_no - 1 >= len(self.layer):
                 logger.info(f"unknown button no: {button_action.sw_no}")
                 continue
@@ -122,33 +130,24 @@ class Master:
             else:
                 self._handle_action(action, button_action)
 
-    def _handle_pointer(self):
-        now = time.monotonic_ns()
-
-        if self._pointer_work_time_ns + POINTER_WORK_DURATION_NS > now:
-            return
-
-        self._pointer_work_time_ns = now
-
-        p = self.pointer.scan()
-        if p is None:
+    def _handle_pointer(self, action: PointerAction):
+        if action is None:
             return
 
         if self._is_wheel_mode:
-            if p.y > 0:
+            if action.y > 0:
                 w = 1
-            elif p.y < 0:
+            elif action.y < 0:
                 w = -1
             else:
                 return
             self.pc_usb.apply_mouse_move(MouseState(0, 0, w))
             return
 
-        self.pc_usb.apply_mouse_move(MouseState(2 * p.x, -2 * p.y, 0))
+        self.pc_usb.apply_mouse_move(MouseState(2 * action.x, -2 * action.y, 0))
 
     def _loop(self):
-        self._handle_matrix_buttons()
-        self._handle_pointer()
+        self._handle_ui()
 
     def run(self):
         while True:

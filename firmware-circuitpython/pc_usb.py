@@ -1,8 +1,11 @@
 from typing import Union
-import usb_hid
-from adafruit_hid.keyboard import Keyboard, Keycode
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-from adafruit_hid.mouse import Mouse
+
+# import usb_hid
+
+from adafruit_hid.keyboard import Keycode
+
+# from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+# from adafruit_hid.mouse import Mouse
 import adafruit_logging as logging
 import time
 
@@ -18,54 +21,60 @@ class MouseState:
 
 class PcUSB:
     def __init__(self):
-        self.keyboard = Keyboard(usb_hid.devices)  # type: ignore
-        self.keyboard_layout = KeyboardLayoutUS(self.keyboard)
-        self.mouse = Mouse(usb_hid.devices)  # type: ignore
+        # self.keyboard = Keyboard(usb_hid.devices)  # type: ignore
+        # self.keyboard_layout = KeyboardLayoutUS(self.keyboard)
+        # self.mouse = Mouse(usb_hid.devices)  # type: ignore
         self._current_mouse_state = MouseState(0, 0, 0)
 
     def setup(self):
         pass
 
     def type_key_sequence(self, keycodes: list[int]):
-        for keycode in keycodes:
-            self.keyboard.send(keycode)
-            time.sleep(0.001)
+        pass
+        # for keycode in keycodes:
+        #     self.keyboard.send(keycode)
+        #     time.sleep(0.001)
 
     def type_key(self, keycode: Union[int, list[int]]):
-        if isinstance(keycode, list):
-            self.keyboard.send(*keycode)
-        else:
-            self.keyboard.send(keycode)
+        pass
+        # if isinstance(keycode, list):
+        #     self.keyboard.send(*keycode)
+        # else:
+        #     self.keyboard.send(keycode)
 
     def type_text(self, text: str):
-        self.keyboard_layout.write(text)
+        pass
+        # self.keyboard_layout.write(text)
 
     def handle_key_button(self, keycode: int, is_push: bool):
-        if is_push:
-            self.keyboard.press(keycode)
-        else:
-            self.keyboard.release(keycode)
+        pass
+        # if is_push:
+        #     self.keyboard.press(keycode)
+        # else:
+        #     self.keyboard.release(keycode)
 
     def apply_mouse_move(self, state: MouseState):
-        if state.x != 0 or state.y != 0 or state.wheel != 0:
-            self.mouse.move(x=state.x, y=state.y, wheel=state.wheel)
-        self._current_mouse_state = state
+        pass
+        # if state.x != 0 or state.y != 0 or state.wheel != 0:
+        #     self.mouse.move(x=state.x, y=state.y, wheel=state.wheel)
+        # self._current_mouse_state = state
 
     def handle_mouse_button(self, button: int, is_push: bool):
-        if is_push:
-            self.mouse.press(button)
-        else:
-            self.mouse.release(button)
+        pass
+        # if is_push:
+        #     self.mouse.press(button)
+        # else:
+        #     self.mouse.release(button)
 
 
 def test():
     from matrix_buttons import MatrixButtons
     from matrix_leds import MatrixLED
-    from pointer import Pointer, PointerAction
+    from ui import UI, PointerAction
 
     matrix_buttons = MatrixButtons()
     matrix_led = MatrixLED()
-    pointer = Pointer()
+    pointer = UI()
     pc_usb = PcUSB()
 
     matrix_buttons.setup()
@@ -104,13 +113,13 @@ def test():
                     logger.info("push mouse left")
                 else:
                     logger.info("release mouse left")
-                pc_usb.handle_mouse_button(Mouse.LEFT_BUTTON, action.is_push)
+                # pc_usb.handle_mouse_button(Mouse.LEFT_BUTTON, action.is_push)
             if action.sw_no == 10:
                 if action.is_push:
                     logger.info("push mouse right")
                 else:
                     logger.info("release mouse right")
-                pc_usb.handle_mouse_button(Mouse.RIGHT_BUTTON, action.is_push)
+                # pc_usb.handle_mouse_button(Mouse.RIGHT_BUTTON, action.is_push)
             if action.sw_no == 11:
                 wheel_pressed = action.is_push
 

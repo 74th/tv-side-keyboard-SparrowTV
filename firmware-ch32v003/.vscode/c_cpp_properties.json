@@ -6,7 +6,7 @@
         "${workspaceFolder}/**",
         "${workspaceFolder}/ch32v003fun"
       ],
-      "defines": ["FUNCONF_USE_UARTPRINTF", "FUNCONF_UART_PRINTF_BAUD=115200"],
+      "defines": [],
       "compilerPath": "/usr/bin/clang",
       "cppStandard": "c++14",
       "intelliSenseMode": "linux-clang-x64",

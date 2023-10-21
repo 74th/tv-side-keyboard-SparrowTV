@@ -1,11 +1,20 @@
 #include "ch32v003fun.h"
 #include "stickpointv.h"
+#include "ch32v003_GPIO_branchless.h"
 #include <stdio.h>
 
 #define I2C_SLAVE_ADDRESS 0xA
 
 #define ADC_NUMCHLS 3
-#define I2C_BUF_SIZE 5
+#define I2C_BUF_SIZE 8
+#define ROW1_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 3)
+#define ROW2_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 4)
+#define ROW3_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 6)
+#define COL1_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 2)
+#define COL2_PIN GPIOv_from_PORT_PIN(GPIO_port_C, 7)
+#define COL3_PIN GPIOv_from_PORT_PIN(GPIO_port_C, 6)
+#define COL4_PIN GPIOv_from_PORT_PIN(GPIO_port_C, 5)
+#define COL5_PIN GPIOv_from_PORT_PIN(GPIO_port_C, 3)
 
 volatile uint8_t i2c_buf[I2C_BUF_SIZE];
 volatile uint16_t adc_buf[ADC_NUMCHLS];
@@ -75,10 +84,6 @@ void init_adc(void)
     // ADCCLK = 24 MHz => RCC_ADCPRE = 0: divide by 2
     RCC->CFGR0 &= ~(0x1F << 11);
 
-    // Enable GPIOD and ADC
-    RCC->APB2PCENR |= RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD |
-                      RCC_APB2Periph_ADC1;
-
     // A0 PA2
     GPIOA->CFGLR &= ~(0xf << (4 * 2)); // CNF = 00: Analog, MODE = 00: Input
 
@@ -143,6 +148,20 @@ void init_adc(void)
     ADC1->CTLR2 |= ADC_SWSTART;
 }
 
+void init_gpio(void)
+{
+    GPIO_port_enable(GPIO_port_C);
+    GPIO_port_enable(GPIO_port_D);
+    GPIO_pinMode(ROW1_PIN, GPIO_pinMode_I_pullDown, GPIO_Speed_10MHz);
+    GPIO_pinMode(ROW2_PIN, GPIO_pinMode_I_pullDown, GPIO_Speed_10MHz);
+    GPIO_pinMode(ROW3_PIN, GPIO_pinMode_I_pullDown, GPIO_Speed_10MHz);
+    GPIO_pinMode(COL1_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+    GPIO_pinMode(COL2_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+    GPIO_pinMode(COL3_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+    GPIO_pinMode(COL4_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+    GPIO_pinMode(COL5_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+}
+
 uint8_t i2c_scan_position = 0;
 
 void I2C1_EV_IRQHandler(void)
@@ -182,7 +201,7 @@ void I2C1_EV_IRQHandler(void)
 #ifdef FUNCONF_USE_UARTPRINTF
         printf("TXE write event: pos:%d\r\n", i2c_scan_position);
 #endif
-        if (i2c_scan_position < 5)
+        if (i2c_scan_position < I2C_BUF_SIZE)
         {
             // 1byte 送信
             uint8_t data = i2c_buf[i2c_scan_position];
@@ -272,7 +291,7 @@ void read_analog(int32_t vcc, int32_t a, int32_t *under, int32_t *upper)
     }
 }
 
-void loop()
+void read_stick()
 {
     int32_t left = 0;
     int32_t right = 0;
@@ -326,6 +345,67 @@ void loop()
     i2c_buf[2] = (uint8_t)down;
     i2c_buf[3] = (uint8_t)up;
     i2c_buf[4] = (uint8_t)0;
+
+    // printf("raw_x: %d, raw_y: %d, raw_vcc: %d\r\n", raw_x, raw_y, raw_vcc);
+}
+
+void read_switch()
+{
+    uint8_t row1_buf = 0;
+    uint8_t row2_buf = 0;
+    uint8_t row3_buf = 0;
+    for (int col = 0; col < 5; col++)
+    {
+        switch (col)
+        {
+        case 0:
+            GPIO_digitalWrite_1(COL1_PIN);
+            GPIO_digitalWrite_0(COL2_PIN);
+            GPIO_digitalWrite_0(COL3_PIN);
+            GPIO_digitalWrite_0(COL4_PIN);
+            GPIO_digitalWrite_0(COL5_PIN);
+            break;
+        case 1:
+            GPIO_digitalWrite_0(COL1_PIN);
+            GPIO_digitalWrite_1(COL2_PIN);
+            GPIO_digitalWrite_0(COL3_PIN);
+            GPIO_digitalWrite_0(COL4_PIN);
+            GPIO_digitalWrite_0(COL5_PIN);
+            break;
+        case 2:
+            GPIO_digitalWrite_0(COL1_PIN);
+            GPIO_digitalWrite_0(COL2_PIN);
+            GPIO_digitalWrite_1(COL3_PIN);
+            GPIO_digitalWrite_0(COL4_PIN);
+            GPIO_digitalWrite_0(COL5_PIN);
+            break;
+        case 3:
+            GPIO_digitalWrite_0(COL1_PIN);
+            GPIO_digitalWrite_0(COL2_PIN);
+            GPIO_digitalWrite_0(COL3_PIN);
+            GPIO_digitalWrite_1(COL4_PIN);
+            GPIO_digitalWrite_0(COL5_PIN);
+            break;
+        case 4:
+            GPIO_digitalWrite_0(COL1_PIN);
+            GPIO_digitalWrite_0(COL2_PIN);
+            GPIO_digitalWrite_0(COL3_PIN);
+            GPIO_digitalWrite_0(COL4_PIN);
+            GPIO_digitalWrite_1(COL5_PIN);
+            break;
+        }
+
+        Delay_Us(1);
+
+        row1_buf |= GPIO_digitalRead(ROW1_PIN) << col;
+        row2_buf |= GPIO_digitalRead(ROW2_PIN) << col;
+        row3_buf |= GPIO_digitalRead(ROW3_PIN) << col;
+    }
+    i2c_buf[5] = row1_buf;
+    i2c_buf[6] = row2_buf;
+    i2c_buf[7] = row3_buf;
+
+    // printf("row1: %02X, row1: %02X, row2: %02X\r\n", row1_buf, row2_buf, row3_buf);
 }
 
 void raw_adc_test()
@@ -343,10 +423,6 @@ void raw_adc_test()
     // i2c_buf[1] = (uint8_t)((0x00ff & raw_x));
     // i2c_buf[2] = (uint8_t)((0xff00 & raw_y) >> 8);
     // i2c_buf[3] = (uint8_t)((0x00ff & raw_y));
-
-#ifdef FUNCONF_USE_UARTPRINTF
-    printf("raw_x: %d, raw_y: %d, raw_vcc: %d\r\n", raw_x, raw_y, raw_vcc);
-#endif
 }
 
 int main()
@@ -354,21 +430,19 @@ int main()
     SystemInit();
     init_rcc();
 
-#ifdef FUNCONF_USE_UARTPRINTF
     printf("using ch32v003fun\r\n");
     printf("initialize\r\n");
-#endif
 
     init_i2c_slave(I2C_SLAVE_ADDRESS);
     init_adc();
+    init_gpio();
 
-#ifdef FUNCONF_USE_UARTPRINTF
     printf("initialize done\r\n");
-#endif
 
     while (1)
     {
-        loop();
+        read_stick();
+        read_switch();
         Delay_Ms(loop_ms);
         // raw_adc_test();
         // Delay_Ms(500);

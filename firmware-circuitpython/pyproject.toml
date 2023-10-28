@@ -13,6 +13,7 @@ adafruit-circuitpython-typing = "^1.9.4"
 
 [tool.poetry.group.dev.dependencies]
 invoke = "^2.2.0"
+requests = "^2.31.0"
 
 [build-system]
 requires = ["poetry-core"]

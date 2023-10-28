@@ -1,41 +1,37 @@
 from typing import Any, cast
-import board
 from busio import UART
 from adafruit_logging import Handler, LogRecord
 import adafruit_logging as logging
 
 
-class UartSTDIOHandler(Handler):
+class STDIOHandler(Handler):
     """Send logging output to a serial port."""
 
-    def __init__(self, uart: UART):
+    def __init__(self):
         """Create an instance.
 
         :param uart: the busio.UART instance to which to write messages
         """
-        self._uart = uart
-        self.level = logging.INFO
+        self.level = logging.INFO  # type: ignore
 
     def format(self, record: LogRecord):
         """Generate a string to log.
 
         :param record: The record (message object) to be logged
         """
-        return super().format(record) + "\r\n"
+        return super().format(record)
 
     def emit(self, record: LogRecord):
         """Generate the message and write it to the UART.
 
         :param record: The record (message object) to be logged
         """
-        self._uart.write(bytes(self.format(record), "utf-8"))
-        print(f"{record.created}: {record.levelname} - {record.msg}")
+        print(self.format(record))
 
 
 def setup():
-    uart = UART(board.TX, board.RX, baudrate=115200)
     logger = logging.getLogger()
-    logger.addHandler(cast(Any, UartSTDIOHandler(uart)))
+    logger.addHandler(cast(Any, STDIOHandler()))
     logger.setLevel(logging.INFO)  # type: ignore
     logger.info("------ initialized --------")
     logger.info("logger setup done")

@@ -2,7 +2,6 @@ from typing import Union
 
 # import usb_hid
 
-from adafruit_hid.keyboard import Keycode
 
 # from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 # from adafruit_hid.mouse import Mouse
@@ -68,18 +67,16 @@ class PcUSB:
 
 
 def test():
-    from matrix_buttons import MatrixButtons
+    from ui import UI
     from matrix_leds import MatrixLED
     from ui import UI, PointerAction
 
-    matrix_buttons = MatrixButtons()
+    ui = UI()
     matrix_led = MatrixLED()
-    pointer = UI()
     pc_usb = PcUSB()
 
-    matrix_buttons.setup()
+    ui.setup()
     matrix_led.setup()
-    pointer.setup()
     pc_usb.setup()
 
     logger.info("pc usb test start")
@@ -94,20 +91,20 @@ def test():
     wheel_pressed = False
 
     while True:
-        actions = matrix_buttons.scan()
-        for action in actions:
+        actions = ui.scan()
+        for action in actions.buttons:
             if action.sw_no == 1 and action.is_push:
                 logger.info("push H")
-                pc_usb.type_key([Keycode.H])
+                pc_usb.type_key([72])
             if action.sw_no == 2 and action.is_push:
                 logger.info("push J")
-                pc_usb.type_key([Keycode.J])
+                pc_usb.type_key([74])
             if action.sw_no == 3 and action.is_push:
                 logger.info("push K")
-                pc_usb.type_key([Keycode.K])
+                pc_usb.type_key([75])
             if action.sw_no == 4 and action.is_push:
                 logger.info("push L")
-                pc_usb.type_key([Keycode.L])
+                pc_usb.type_key([76])
             if action.sw_no == 9:
                 if action.is_push:
                     logger.info("push mouse left")
@@ -123,7 +120,7 @@ def test():
             if action.sw_no == 11:
                 wheel_pressed = action.is_push
 
-        action = pointer.scan()
+        action = actions.pointer
         if action.x != 0 or action.y != 0:
             if wheel_pressed:
                 logger.info(f"wheel {-action.y}")

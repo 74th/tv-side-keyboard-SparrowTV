@@ -67,7 +67,7 @@ class UI:
 
         for col in range(settings.MATRIX_COL_NUM):
             for row in range(settings.MATRIX_ROW_NUM):
-                value = buf[4 + col] & (1 << row) != 0
+                value = buf[5 + row] & (1 << col) != 0
                 if self.button_state[row][col] != value:
                     self.button_state[row][col] = value
                     result.append(

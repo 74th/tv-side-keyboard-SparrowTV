@@ -1,6 +1,7 @@
 import time
 from typing import cast, Any, TypeAlias, Union
-from adafruit_hid.mouse import Mouse
+
+# from adafruit_hid.mouse import Mouse
 import adafruit_logging as logging
 from ir import IR
 from matrix_leds import MatrixLED, LEDColor
@@ -91,10 +92,10 @@ class Master:
             self.matrix_led.putxy(x, y, (g, r, b))
         if code == CM_MOUSE_LEFT:
             logger.info(f"MOUSE_LEFT push:{btn.is_push}")
-            self.pc_usb.handle_mouse_button(Mouse.LEFT_BUTTON, btn.is_push)
+            self.pc_usb.handle_mouse_button(0, btn.is_push)
         if code == CM_MOUSE_RIGHT:
             logger.info(f"MOUSE_RIGHT push:{btn.is_push}")
-            self.pc_usb.handle_mouse_button(Mouse.RIGHT_BUTTON, btn.is_push)
+            self.pc_usb.handle_mouse_button(1, btn.is_push)
         if code == CM_MOUSE_WHEEL:
             logger.info(f"MOUSE_WHEEL push:{btn.is_push}")
             self._is_wheel_mode = btn.is_push
@@ -113,10 +114,10 @@ class Master:
 
     def _handle_matrix_buttons(self, actions: list[ButtonAction]):
         for button_action in actions:
-            if button_action.sw_no - 1 >= len(self.layer):
+            if button_action.sw_no >= len(self.layer):
                 logger.info(f"unknown button no: {button_action.sw_no}")
                 continue
-            action = self.layer[button_action.sw_no - 1]
+            action = self.layer[button_action.sw_no]
             if button_action.is_push:
                 logger.info(f"pushed sw:{button_action.sw_no}")
             else:

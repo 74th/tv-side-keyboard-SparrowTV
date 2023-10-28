@@ -1,6 +1,3 @@
-[submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_IRRemote"]
-	path = firmware-circuitpython/imports/Adafruit_CircuitPython_IRRemote
-	url = https://github.com/adafruit/Adafruit_CircuitPython_IRRemote.git
 [submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_HTTPServer"]
 	path = firmware-circuitpython/imports/Adafruit_CircuitPython_HTTPServer
 	url = https://github.com/adafruit/Adafruit_CircuitPython_HTTPServer.git

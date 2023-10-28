@@ -1,6 +1,3 @@
-[submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_HID"]
-	path = firmware-circuitpython/imports/Adafruit_CircuitPython_HID
-	url = https://github.com/adafruit/Adafruit_CircuitPython_HID.git
 [submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_IRRemote"]
 	path = firmware-circuitpython/imports/Adafruit_CircuitPython_IRRemote
 	url = https://github.com/adafruit/Adafruit_CircuitPython_IRRemote.git
@@ -10,3 +7,6 @@
 [submodule "firmware-circuitpython/imports/Adafruit_CircuitPython_Logging"]
 	path = firmware-circuitpython/imports/Adafruit_CircuitPython_Logging
 	url = https://github.com/adafruit/Adafruit_CircuitPython_Logging.git
+[submodule "firmware-circuitpython/imports/micropython-typing-dummy"]
+	path = firmware-circuitpython/imports/micropython-typing-dummy
+	url = https://github.com/74th/micropython-typing-dummy.git

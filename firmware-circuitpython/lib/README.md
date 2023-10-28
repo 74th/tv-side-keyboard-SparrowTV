@@ -1,2 +1,4 @@
 - adafruit_httpserver(MIT) https://github.com/adafruit/Adafruit_CircuitPython_HTTPServer
 - adafruit_logging(MIT) https://github.com/adafruit/Adafruit_CircuitPython_logging
+- micropython-typing-dummy(MIT) https://github.com/74th/micropython-typing-dummy
+- circuitpython-ch9329(MIT) https://github.com/74th/circuitpython-ch9329

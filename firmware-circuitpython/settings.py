@@ -6,6 +6,9 @@ IR_IN_PIN = board.IO0
 I2C_SDA_PIN = board.IO2
 I2C_SCL_PIN = board.IO3
 
+CH9329_TX = board.IO7
+CH9329_RX = board.IO6
+
 MATRIX_LED_PIN = board.IO4
 
 MATRIX_COL_NUM = 5

@@ -340,10 +340,10 @@ void read_stick()
         }
     }
 
-    i2c_buf[0] = (uint8_t)left;
-    i2c_buf[1] = (uint8_t)right;
-    i2c_buf[2] = (uint8_t)down;
-    i2c_buf[3] = (uint8_t)up;
+    i2c_buf[0] = (uint8_t)up;
+    i2c_buf[1] = (uint8_t)down;
+    i2c_buf[2] = (uint8_t)left;
+    i2c_buf[3] = (uint8_t)right;
     i2c_buf[4] = (uint8_t)0;
 
     // printf("raw_x: %d, raw_y: %d, raw_vcc: %d\r\n", raw_x, raw_y, raw_vcc);

@@ -3,6 +3,7 @@ from typing import cast, Any, TypeAlias, Union
 
 # from adafruit_hid.mouse import Mouse
 import adafruit_logging as logging
+from ch9329 import CH9329
 from ir import IR
 from matrix_leds import MatrixLED, LEDColor
 from ui import UI, PointerAction, ButtonAction
@@ -92,10 +93,14 @@ class Master:
             self.matrix_led.putxy(x, y, (g, r, b))
         if code == CM_MOUSE_LEFT:
             logger.info(f"MOUSE_LEFT push:{btn.is_push}")
-            self.pc_usb.handle_mouse_button(0, btn.is_push)
+            self.pc_usb.handle_mouse_button(
+                CH9329.MOUSE_KEYCODE.LEFT_BUTTON, btn.is_push
+            )
         if code == CM_MOUSE_RIGHT:
             logger.info(f"MOUSE_RIGHT push:{btn.is_push}")
-            self.pc_usb.handle_mouse_button(1, btn.is_push)
+            self.pc_usb.handle_mouse_button(
+                CH9329.MOUSE_KEYCODE.RIGHT_BUTTON, btn.is_push
+            )
         if code == CM_MOUSE_WHEEL:
             logger.info(f"MOUSE_WHEEL push:{btn.is_push}")
             self._is_wheel_mode = btn.is_push

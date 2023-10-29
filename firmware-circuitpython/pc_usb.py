@@ -1,12 +1,11 @@
 from typing import Union
-
-# import usb_hid
-
-
-# from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-# from adafruit_hid.mouse import Mouse
-import adafruit_logging as logging
 import time
+
+from busio import UART
+import adafruit_logging as logging
+from ch9329 import CH9329, Keycode as KC
+
+import settings
 
 logger = logging.getLogger()
 
@@ -20,50 +19,44 @@ class MouseState:
 
 class PcUSB:
     def __init__(self):
-        # self.keyboard = Keyboard(usb_hid.devices)  # type: ignore
-        # self.keyboard_layout = KeyboardLayoutUS(self.keyboard)
-        # self.mouse = Mouse(usb_hid.devices)  # type: ignore
+        uart = UART(tx=settings.CH9329_TX, rx=settings.CH9329_RX, baudrate=9600)
+        self.ch9329 = CH9329(uart)
         self._current_mouse_state = MouseState(0, 0, 0)
 
     def setup(self):
         pass
 
     def type_key_sequence(self, keycodes: list[int]):
-        pass
-        # for keycode in keycodes:
-        #     self.keyboard.send(keycode)
-        #     time.sleep(0.001)
+        for keycode in keycodes:
+            self.ch9329.keyboard_tap(keycode)
+            time.sleep(0.001)
 
     def type_key(self, keycode: Union[int, list[int]]):
-        pass
-        # if isinstance(keycode, list):
-        #     self.keyboard.send(*keycode)
-        # else:
-        #     self.keyboard.send(keycode)
+        if isinstance(keycode, list):
+            self.ch9329.keyboard_tap(*keycode)
+        else:
+            self.ch9329.keyboard_tap(keycode)
 
     def type_text(self, text: str):
-        pass
         # self.keyboard_layout.write(text)
+        pass
 
     def handle_key_button(self, keycode: int, is_push: bool):
-        pass
-        # if is_push:
-        #     self.keyboard.press(keycode)
-        # else:
-        #     self.keyboard.release(keycode)
+        if is_push:
+            self.ch9329.keyboard_press(keycode)
+        else:
+            self.ch9329.keyboard_release(keycode)
 
     def apply_mouse_move(self, state: MouseState):
-        pass
-        # if state.x != 0 or state.y != 0 or state.wheel != 0:
-        #     self.mouse.move(x=state.x, y=state.y, wheel=state.wheel)
-        # self._current_mouse_state = state
+        if state.x != 0 or state.y != 0 or state.wheel != 0:
+            self.ch9329.mouse_move(x=state.x, y=state.y, wheel=state.wheel)
+        self._current_mouse_state = state
 
     def handle_mouse_button(self, button: int, is_push: bool):
-        pass
-        # if is_push:
-        #     self.mouse.press(button)
-        # else:
-        #     self.mouse.release(button)
+        if is_push:
+            self.ch9329.mouse_press(button)
+        else:
+            self.ch9329.mouse_release(button)
 
 
 def test():

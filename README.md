@@ -50,7 +50,7 @@ ESP32-S3 の USB デバイス機能が使いこなせなかった（USB キー�
 | R1                           | Register 0805 1Ω                            | 1        |
 | R2                           | Register 0805 27Ω                           | 1        |
 | R3, R4, R8, R9               | Register 0805 10kΩ                          | 4        |
-| R5                           | Register 0805 42kΩ                          | 1        |
+| R5                           | Register 0805 42-56kΩ                          | 1        |
 | R6, R7                       | Register 0805 5.1kΩ                         | 2        |
 | R10, R11                     | Register 0805 1kΩ                           | 2        |
 | SW1-SW15                     | Kailh Choc Switch Socket                    | 15       |

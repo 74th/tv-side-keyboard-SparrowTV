@@ -7,3 +7,6 @@
 [submodule "firmware-circuitpython/imports/micropython-typing-dummy"]
 	path = firmware-circuitpython/imports/micropython-typing-dummy
 	url = https://github.com/74th/micropython-typing-dummy.git
+[submodule "firmware-circuitpython/imports/circuitpython-ch9329"]
+	path = firmware-circuitpython/imports/circuitpython-ch9329
+	url = https://github.com/74th/circuitpython-ch9329

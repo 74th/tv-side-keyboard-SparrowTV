@@ -1,20 +1,15 @@
-[tool.poetry]
+[project]
 name = "firmware-circuitpython"
 version = "0.1.0"
-description = ""
-authors = ["Atsushi Morimoto (74th) <74th.tech@gmail.com>"]
+description = "Add your description here"
 readme = "README.md"
-packages = []
+requires-python = ">=3.10"
+dependencies = [
+    "adafruit-circuitpython-typing==1.9.4",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-adafruit-circuitpython-typing = "^1.9.4"
-
-
-[tool.poetry.group.dev.dependencies]
-invoke = "^2.2.0"
-requests = "^2.31.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "invoke~=2.2.0",
+    "requests~=2.31.0",
+]

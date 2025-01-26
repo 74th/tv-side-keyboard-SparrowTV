@@ -141,7 +141,15 @@ class Master:
             return
 
         if self._is_wheel_mode:
-            if action.y > 0:
+            if action.x == 0:
+                return
+
+            if self._wheel_ballast < 8:
+                self._wheel_ballast += 1
+                return
+            self._wheel_ballast = 0
+
+            if action.x > 0:
                 w = 1
             elif action.y < 0:
                 w = -1

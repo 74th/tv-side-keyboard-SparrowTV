@@ -29,7 +29,7 @@ class PcUSB:
     def type_key_sequence(self, keycodes: list[int]):
         for keycode in keycodes:
             self.ch9329.keyboard_tap(keycode)
-            time.sleep(0.001)
+            time.sleep(0.1)
 
     def type_key(self, keycode: Union[int, list[int]]):
         if isinstance(keycode, list):
@@ -38,6 +38,7 @@ class PcUSB:
             self.ch9329.keyboard_tap(keycode)
 
     def type_text(self, text: str):
+        logger.info(f"not implemented")
         # self.keyboard_layout.write(text)
         pass
 

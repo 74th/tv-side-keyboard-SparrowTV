@@ -1,3 +1,4 @@
+from ch9329.keycode import Keycode
 from led_color import *
 from model import *
 from action_codes import (
@@ -19,10 +20,10 @@ KC_TV_CURSOR_DOWN: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_DOWN)
 KC_TV_CURSOR_OK: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_OK)
 KC_TV_CURSOR_BACK: KeyAssign = (CM_SEND_IR, ir_pulse.TV_CURSOR_BACK)
 
-KC_A: KeyAssign = [(CM_TYPE_KEY, [65])]
-KC_CTRL_W: KeyAssign = [(CM_TYPE_KEY, [87, 17])]
-KC_ENTER: KeyAssign = [(CM_TYPE_KEY, 114)]
-KC_ESC: KeyAssign = [(CM_TYPE_KEY, 243)]
+KC_A: KeyAssign = [(CM_TYPE_KEY, Keycode.A)]
+KC_CTRL_W: KeyAssign = [(CM_TYPE_KEY, [Keycode.CONTROL, Keycode.W])]
+KC_ENTER: KeyAssign = [(CM_TYPE_KEY, Keycode.ENTER)]
+KC_ESC: KeyAssign = [(CM_TYPE_KEY, Keycode.ESCAPE)]
 
 LAYER1: Layer = [
     [KC_MOUSE_L, KC_TV_CURSOR_BACK, KC_TV_CURSOR_UP, KC_TV_CURSOR_OK, KC_A],
